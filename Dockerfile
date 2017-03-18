@@ -14,7 +14,6 @@ RUN         apt-get update \
             && apt-get upgrade -y \
             && apt-get install -y tar curl gcc g++ lib32gcc1 lib32tinfo5 lib32z1 lib32stdc++6 \
             && useradd -m -d /home/container container
-            && 
 
 USER        container
 ENV         HOME /home/container
