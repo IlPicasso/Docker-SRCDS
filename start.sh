@@ -27,7 +27,16 @@ if [ ! -f "/home/container/steamcmd/steamcmd.sh" ]; then
 
     echo "Installing requested game, this could take a long time depending on game size and network."
     set -x
-    ./steamcmd.sh +login anonymous +force_install_dir /home/container +app_update $SRCDS_APPID mod cstrike +quit
+    ./steamcmd.sh +login anonymous \
+                          +force_install_dir /home/container/ \
+                          +app_set_config 90 mod cstrike \
+                          +app_update 90 validate \
+                          +quit && \
+			  /home/container/ +login anonymous \
+                          +force_install_dir /opt/css/csserver \
+                          +app_set_config 90 mod cstrike \
+                          +app_update 90 validate \
+                          +quit
     set +x
 
     cd /home/container
@@ -45,5 +54,5 @@ if [ -z "$STARTUP" ]; then
 fi
 
 MODIFIED_STARTUP=`echo $STARTUP | perl -pe 's@{{(.*?)}}@$ENV{$1}@g'`
-echo "./srcds_run ${MODIFIED_STARTUP}"
-./srcds_run $MODIFIED_STARTUP
+echo "./hlds_run ${MODIFIED_STARTUP}"
+./hlds_run $MODIFIED_STARTUP
