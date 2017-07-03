@@ -11,7 +11,7 @@ fi
 
 # Download SteamCMD, it is missing
 if [ ! -f "/home/container/steamcmd/steamcmd.sh" ]; then
-    mkdir steamcmd; cd steamcmd
+    mkdir cs; mkdir steamcmd; cd steamcmd
 
     set -x
     curl -sSL -o steamcmd.tar.gz http://media.steampowered.com/installer/steamcmd_linux.tar.gz
@@ -28,12 +28,12 @@ if [ ! -f "/home/container/steamcmd/steamcmd.sh" ]; then
     echo "Installing requested game, this could take a long time depending on game size and network."
     set -x
     ./steamcmd.sh +login anonymous \
-                          +force_install_dir /home/container/ \
+                          +force_install_dir /home/container/cs \
                           +app_set_config 90 mod cstrike \
                           +app_update 90 validate \
                           +quit && \
 			  /home/container/steamcmd/steamcmd.sh +login anonymous \
-                          +force_install_dir /home/container \
+                          +force_install_dir /home/container/cs \
                           +app_set_config 90 mod cstrike \
                           +app_update 90 validate \
                           +quit
