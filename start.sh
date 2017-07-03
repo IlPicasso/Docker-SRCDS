@@ -28,12 +28,12 @@ if [ ! -f "/home/container/steamcmd/steamcmd.sh" ]; then
     echo "Installing requested game, this could take a long time depending on game size and network."
     set -x
     ./steamcmd.sh +login anonymous \
-                          +force_install_dir /home/container/cs \
+                          +force_install_dir /home/container/ \
                           +app_set_config 90 mod cstrike \
                           +app_update 90 validate \
                           +quit && \
 			  /home/container/steamcmd/steamcmd.sh +login anonymous \
-                          +force_install_dir /home/container/cs \
+                          +force_install_dir /home/container/ \
                           +app_set_config 90 mod cstrike \
                           +app_update 90 validate \
                           +quit
